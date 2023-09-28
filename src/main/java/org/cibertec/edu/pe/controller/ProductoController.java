@@ -17,7 +17,7 @@ public class ProductoController {
 	private IProductoService prod;
 	
 
-	@GetMapping("/listar")		// http://localhost:8080/listar
+	@GetMapping("/listar")
 	public String Listar(Model m) {
 		List<Producto> lista = prod.Listado();
 		m.addAttribute("productos", lista);
@@ -27,7 +27,7 @@ public class ProductoController {
 	@GetMapping("/nuevo")
 	public String agregar(Model m) {
 		m.addAttribute("producto", new Producto());
-		return "form";		
+		return "nuevo";		
 			
 	}
 

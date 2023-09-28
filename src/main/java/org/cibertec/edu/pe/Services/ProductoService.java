@@ -6,7 +6,9 @@ import org.cibertec.edu.pe.entity.Producto;
 import org.cibertec.edu.pe.interfaceService.IProductoService;
 import org.cibertec.edu.pe.interfaces.IProducto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductoService implements IProductoService {
 	
 	@Autowired

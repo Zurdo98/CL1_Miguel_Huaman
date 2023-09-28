@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>NUEVO PRODUCTO</title>
+		<meta charset="UTF-8">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	</head>
+	<body>
+		<form th:action ="@{/salvar}" th:object="${producto}" onsubmit="return validarFormulario()" >
+			<div class="card">	
+				<div class="card-header">
+					<h3  style="text-align: center;">DATOS DEL PRODUCTO</h3>
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label><b>ID</b></label>
+						<input type="text" th:field="*{IdProducto}"  class="form-control" pattern=".{6}" placeholder="P0000X" required>						
+					</div>			
+					<div class="form-group">
+						<label><b>DESCRIPCION</b></label>
+						<input type="text" th:field="*{Descripcion}"  class="form-control" minlength="1" maxlength="50" placeholder="Ingrese descripción"  required >						
+					</div>
+					<div class="form-group">
+						<label><b>PRECIO</b></label>
+						<input type="number"  th:field="*{PrecioUnidad}"  class="form-control" min="50" max="500" placeholder="Ingrese precio" required>						
+					</div>
+					<div class="form-group">
+						<label><b>STOCK</b></label>
+						<input type="number"  th:field="*{Stock}"  class="form-control" min="1" placeholder="Ingrese cantidad"  required>						
+					</div>
+					<div class="form-group">
+						<label><b>ESTADO</b></label>
+						<input type="number"  th:field="*{Estado}"  class="form-control"  pattern="[01]" placeholder="'1' ó '0'" required>						
+					</div>					
+				</div>				
+				<div class="card-footer">
+					<input type="submit" value="Registrar" class="btn btn-success">
+					
+				</div>			
+			</div>		
+		</form>	
+		
+		<script>
+        function validarFormulario() {
+            var idProducto = document.getElementById("IdProducto").value;
+            var descripcion = document.getElementById("Descripcion").value;
+            var precioUnidad = document.getElementById("PrecioUnidad").value;
+            var stock = document.getElementById("Stock").value;
+            var estado = document.getElementById("Estado").value;
+
+            if (idProducto.length != 6) {
+                alert("El IdProducto debe tener 6 caracteres.");
+                return false;
+            }
+            if (descripcion.length < 1 || descripcion.length > 50) {
+                alert("La Descripción debe tener entre 1 y 50 caracteres.")
+                return false;
+            }
+            if (precioUnidad < 50 || precioUnidad > 500) {
+                alert("El Precio Unidad debe estar entre 50 y 500.");
+                return false;
+            }
+            if (stock <= 0) {
+                alert("El Stock debe ser mayor a CERO.");
+                return false;
+            }
+            if (estado != "1" && estado != "0") {
+                alert("El Estado debe ser '1' o '0'.");
+                return false;
+            }
+
+            window.alert("Registro exitoso.");
+            return true;
+        }
+    </script>
+		
+		
+	</body>
+</html>
